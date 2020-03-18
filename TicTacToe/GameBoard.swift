@@ -15,6 +15,7 @@ enum GameBoardError: Error, Equatable {
 typealias Coordinate = (x: Int, y: Int)
 
 struct GameBoard {
+    private var squares = Array(repeating: Square.empty, count: 9)
     
     enum Mark: Equatable {
         case x
@@ -62,5 +63,4 @@ struct GameBoard {
         return square.y * 3 + square.x
     }
     
-    private var squares = Array(repeating: Square.empty, count: 9)
 }
