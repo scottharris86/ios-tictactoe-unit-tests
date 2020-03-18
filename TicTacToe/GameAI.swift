@@ -9,23 +9,64 @@
 import Foundation
 
 func game(board: GameBoard, isWonBy player: GameBoard.Mark) -> Bool {
-    
-    // checking vertical column zero
     var numberOfMarks = 0
+    for x in 0...2 {
+        
+        
+        for y in 0...2 {
+            if board[(x,y)] == player {
+                numberOfMarks += 1
+            }
+            
+        }
+        
+        if numberOfMarks == 3 {
+            return true
+        }
+        
+    }
     
     for y in 0...2 {
-        if board[(0,y)] == player {
+        var numberOfMarks = 0
+        
+        for x in 0...2 {
+            if board[(x,y)] == player {
+                numberOfMarks += 1
+            }
+            
+        }
+        
+        if numberOfMarks == 3 {
+            return true
+        }
+        
+    }
+    
+    numberOfMarks = 0
+    let leftToRight: [Coordinate] = [(0,0), (1,1), (2,2)]
+    
+    for cordinate in leftToRight {
+        if board[cordinate] == player {
             numberOfMarks += 1
         }
-
     }
     
     if numberOfMarks == 3 {
         return true
     }
     
-    // check another column
     numberOfMarks = 0
+    let rightToLeft: [Coordinate] = [(2,0), (1,1), (0,2)]
+    
+    for cordinate in rightToLeft {
+        if board[cordinate] == player {
+            numberOfMarks += 1
+        }
+    }
+    
+    if numberOfMarks == 3 {
+        return true
+    }
     
     return false
 }
